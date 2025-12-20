@@ -16,7 +16,8 @@ object OdinClient : ClientModInitializer {
     private val categoryCache = mutableMapOf<String, Category>()
 
     private val modulesToRegister = arrayOf<Module>(
-        CloseChest, DungeonAbilities, FuckDiorite, SecretHitboxes, BreakerHelper, KeyHighlight, LividSolver, SpiritBear
+        CloseChest, DungeonAbilities, FuckDiorite, SecretHitboxes, BreakerHelper, KeyHighlight, LividSolver, SpiritBear,
+        Highlight
     )
 
     init {
