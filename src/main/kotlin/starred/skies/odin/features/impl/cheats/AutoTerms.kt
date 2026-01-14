@@ -42,5 +42,10 @@ object AutoTerms : Module(
                 }
             }
         }
+
+        on<TerminalEvent.Closed> {
+            lastClickTime = 0L
+            firstClick = true
+        }
     }
 }
