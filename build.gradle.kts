@@ -21,6 +21,7 @@ repositories {
 
     strictMaven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1", "me.djtheredstoner")
     strictMaven("https://api.modrinth.com/maven", "maven.modrinth")
+    strictMaven("https://maven.parchmentmc.org/", "org.parchmentmc")
     strictMaven("https://jitpack.io", "com.github.stivais", "com.github.odtheking", "com.github.sivthepolarfox")
 }
 
