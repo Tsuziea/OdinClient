@@ -5,16 +5,16 @@ import com.odtheking.odin.clickgui.settings.impl.NumberSetting
 import com.odtheking.odin.events.*
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
+import com.odtheking.odin.features.impl.floor7.TerminalSimulator
 import com.odtheking.odin.features.impl.floor7.TerminalSolver
 import com.odtheking.odin.features.impl.floor7.terminalhandler.TerminalTypes
 import starred.skies.odin.utils.Skit
 
 object AutoTerms : Module(
-    name = "Auto Terms (!!!!!)",
-    description = "Automatically solves terminals - USE AT YOUR OWN RISK, NOT TESTED.",
+    name = "Auto Terms",
+    description = "Automatically solves terminals.",
     category = Skit.CHEATS
 ) {
-    private val _unused by BooleanSetting("USE AT YOUR OWN RISK", true, desc = "AUTO TERMS HAS NOT BEEN TESTED!!!!!")
     private val autoDelay by NumberSetting("Delay", 170L, 100, 300, unit = "ms", desc = "Delay between clicks.")
     private val delayVariety by NumberSetting("Delay Variety", 70L, 0, 150, unit = "ms", desc = "Variety in the delay between clicks.")
     private val firstClickDelay by NumberSetting("First Click Delay", 350L, 300, 500, unit = "ms", desc = "Delay before first click.")
@@ -26,10 +26,10 @@ object AutoTerms : Module(
     init {
         on<GuiEvent.DrawBackground> {
             with (TerminalSolver.currentTerm ?: return@on) {
-                if (firstClick && (System.currentTimeMillis() - lastClickTime < firstClickDelay))  return@on
-                if (System.currentTimeMillis() - lastClickTime < autoDelay)  return@on
+                if (firstClick && (System.currentTimeMillis() - lastClickTime < firstClickDelay)) return@on
+                if (System.currentTimeMillis() - lastClickTime < autoDelay) return@on
                 if (System.currentTimeMillis() - lastClickTime > breakThreshold) isClicked = false
-                if (solution.isEmpty() || (disableMelody && type == TerminalTypes.MELODY) || isClicked)  return@on
+                if (solution.isEmpty() || (disableMelody && type == TerminalTypes.MELODY) || isClicked) return@on
 
                 val slotIndex = solution.firstOrNull() ?: return@on
                 lastClickTime = System.currentTimeMillis() + (0..delayVariety).random()
@@ -43,8 +43,8 @@ object AutoTerms : Module(
             }
         }
 
-        on<TerminalEvent.Closed> {
-            lastClickTime = 0L
+        on<TerminalEvent.Opened> {
+            lastClickTime = System.currentTimeMillis()
             firstClick = true
         }
     }
