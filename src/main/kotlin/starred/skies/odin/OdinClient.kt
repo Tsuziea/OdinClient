@@ -34,7 +34,7 @@ object OdinClient : ClientModInitializer {
     private var lastInstall: String by mainFile.string("lastInstall")
     private var send: Boolean = true
 
-    const val MOD_VERSION: String = /*$ mod_version*/ "0.1.3"
+    const val MOD_VERSION: String = /*$ mod_version*/ "0.1.3-r1"
     val moduleConfig: ModuleConfig = ModuleConfig("odinClient")
 
     override fun onInitializeClient() {
