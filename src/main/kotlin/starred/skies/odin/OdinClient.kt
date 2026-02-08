@@ -26,7 +26,8 @@ object OdinClient : ClientModInitializer {
 
     private val modulesToRegister: Array<Module> = arrayOf(
         CloseChest, DungeonAbilities, FuckDiorite, SecretHitboxes, BreakerHelper, KeyHighlight, LividSolver, SpiritBear, TriggerBot,
-        Highlight, AutoClicker, Gloomlock, EscrowFix, AutoGFS, QueueTerms, AutoTerms, Trajectories, AutoSell, SimonSays, InventoryWalk
+        Highlight, AutoClicker, Gloomlock, EscrowFix, AutoGFS, QueueTerms, AutoTerms, Trajectories, AutoSell, SimonSays, InventoryWalk,
+        FarmKeys
     )
 
     private val mainFile: Scribble = Scribble("main")
