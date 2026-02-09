@@ -19,7 +19,8 @@ object AutoExperiments : Module (
     description = "Automatically click on the Chronomatron and Ultrasequencer experiments.",
     category = Skit.CHEATS
 ) {
-    private val clickDelay by NumberSetting("Click Delay", 200, 0, 1000, 10, unit = "ms", desc = "Time in ms between automatic test clicks.")
+    private val clickDelay by NumberSetting("Click Delay", 200, 100, 1000, 10, unit = "ms", desc = "Time in ms between automatic test clicks.")
+    private val delayVariety by NumberSetting("Delay variety", 50, 0, 1000, 10, unit = "ms", desc = "Variance in delays")
     private val autoClose by BooleanSetting("Auto Close", true, desc = "Automatically close the GUI after completing the experiment.")
     private val serumCount by NumberSetting("Serum Count", 0, 0, 3, 1, desc = "Consumed Metaphysical Serum count.")
     private val getMaxXp by BooleanSetting("Get Max XP", false, desc = "Solve Chronomatron to 15 and Ultrasequencer to 20 for max XP.")
@@ -47,7 +48,7 @@ object AutoExperiments : Module (
             val screen = mc.screen as? AbstractContainerScreen<*> ?: return@on
 
             val now = System.currentTimeMillis()
-            if (now - lastClick < clickDelay) return@on
+            if (now - lastClick < delay()) return@on
 
             handler.nextClick()?.let { slotId ->
                 mc.gameMode?.handleInventoryMouseClick(screen.menu.containerId, slotId, 0, ClickType.CLONE, mc.player)
@@ -140,4 +141,7 @@ object AutoExperiments : Module (
 
         abstract fun shouldClose(autoClose: Boolean): Boolean
     }
+
+    private fun delay(): Long =
+        (clickDelay + (0..delayVariety).random()).toLong()
 }
