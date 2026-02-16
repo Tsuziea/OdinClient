@@ -1,6 +1,7 @@
 package starred.skies.odin.features.impl.cheats
 
-import com.odtheking.odin.clickgui.settings.impl.*
+import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
+import com.odtheking.odin.clickgui.settings.impl.KeybindSetting
 import com.odtheking.odin.events.ChatPacketEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module

@@ -17,8 +17,7 @@ import starred.skies.odin.events.TerminalUpdateEvent
 import starred.skies.odin.utils.Skit
 import starred.skies.odin.utils.notify
 import java.net.URI
-import java.util.LinkedList
-import java.util.Queue
+import java.util.*
 
 object QueueTerms : Module(
     name = "Queue Terms",

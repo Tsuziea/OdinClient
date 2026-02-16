@@ -1,7 +1,8 @@
 package starred.skies.odin.features.impl.cheats
 
 import com.mojang.blaze3d.platform.InputConstants
-import com.odtheking.odin.clickgui.settings.impl.*
+import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
+import com.odtheking.odin.clickgui.settings.impl.KeybindSetting
 import com.odtheking.odin.features.Module
 import net.minecraft.client.KeyMapping
 import org.lwjgl.glfw.GLFW
