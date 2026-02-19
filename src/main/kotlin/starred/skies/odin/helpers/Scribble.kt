@@ -33,20 +33,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package starred.skies.odin.helpers
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.google.gson.*
 import com.mojang.serialization.Codec
-import com.mojang.serialization.DynamicOps
 import com.mojang.serialization.JsonOps
-import com.odtheking.odin.OdinMod.mc
 import kotlinx.coroutines.*
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents
 import net.fabricmc.loader.api.FabricLoader
-import net.minecraft.data.registries.VanillaRegistries
-import net.minecraft.resources.RegistryOps
 import java.io.File
 import kotlin.jvm.optionals.getOrNull
 import kotlin.properties.ReadWriteProperty

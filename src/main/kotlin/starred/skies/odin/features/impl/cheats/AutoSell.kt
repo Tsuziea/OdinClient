@@ -1,6 +1,9 @@
 package starred.skies.odin.features.impl.cheats
 
-import com.odtheking.odin.clickgui.settings.impl.*
+import com.odtheking.odin.clickgui.settings.impl.ActionSetting
+import com.odtheking.odin.clickgui.settings.impl.ListSetting
+import com.odtheking.odin.clickgui.settings.impl.NumberSetting
+import com.odtheking.odin.clickgui.settings.impl.SelectorSetting
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.containsOneOf
 import com.odtheking.odin.utils.equalsOneOf

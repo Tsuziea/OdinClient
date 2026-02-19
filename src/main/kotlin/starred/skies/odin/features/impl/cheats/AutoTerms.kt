@@ -2,7 +2,8 @@ package starred.skies.odin.features.impl.cheats
 
 import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
 import com.odtheking.odin.clickgui.settings.impl.NumberSetting
-import com.odtheking.odin.events.*
+import com.odtheking.odin.events.GuiEvent
+import com.odtheking.odin.events.TerminalEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.skyblock.dungeon.terminals.TerminalTypes

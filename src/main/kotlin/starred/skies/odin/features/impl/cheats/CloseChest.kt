@@ -6,7 +6,6 @@ import com.odtheking.odin.events.core.on
 import com.odtheking.odin.events.core.onReceive
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.equalsOneOf
-import com.odtheking.odin.utils.modMessage
 import com.odtheking.odin.utils.noControlCodes
 import com.odtheking.odin.utils.skyblock.dungeon.DungeonUtils
 import net.minecraft.client.gui.screens.Screen
@@ -26,24 +25,22 @@ object CloseChest : Module(
         onReceive<ClientboundOpenScreenPacket> {
             if (mode != 0) return@onReceive
             if (!DungeonUtils.inDungeons) return@onReceive
+            if (!title.string.noControlCodes.equalsOneOf("Chest", "Large Chest")) return@onReceive
 
-            if (title.string.noControlCodes.equalsOneOf("Chest", "Large Chest")) {
-                mc.connection?.send(ServerboundContainerClosePacket(containerId))
-                it.cancel()
-            }
+            mc.connection?.send(ServerboundContainerClosePacket(containerId))
+            it.cancel()
         }
 
         on<GuiEvent.KeyPress> {
             if (!DungeonUtils.inDungeons) return@on
-            //? if >= 1.21.10 {
-            if (!mc.options.keyInventory.matches(input)) handleInput(screen)
-            //? } else {
-            /*if (!mc.options.keyInventory.matches(keyCode, scanCode)) handleInput(screen)
-            *///? }
+            if (mc.options.keyInventory.matches(input)) return@on
+
+            handleInput(screen)
         }
 
         on<GuiEvent.MouseClick> {
             if (!DungeonUtils.inDungeons) return@on
+
             handleInput(screen)
         }
     }

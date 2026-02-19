@@ -3,7 +3,9 @@ package starred.skies.odin.features.impl.cheats
 import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
 import com.odtheking.odin.clickgui.settings.impl.ColorSetting
 import com.odtheking.odin.clickgui.settings.impl.SelectorSetting
-import com.odtheking.odin.events.*
+import com.odtheking.odin.events.RenderEvent
+import com.odtheking.odin.events.TickEvent
+import com.odtheking.odin.events.WorldEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.Colors
@@ -32,7 +34,7 @@ object Highlight : Module(
 
     private val dungeonMobSpawns = hashSetOf("Lurker", "Dreadlord", "Souleater", "Zombie", "Skeleton", "Skeletor", "Sniper", "Super Archer", "Spider", "Fels", "Withermancer", "Lost Adventurer", "Angry Archaeologist", "Frozen Adventurer")
     // https://regex101.com/r/QQf502/1
-    private val starredRegex = Regex("^.*✯ .*\\d{1,3}(?:,\\d{3})*(?:\\.\\d+)?(?:[kM])?❤$")
+    private val starredRegex = Regex("^.*✯ .*\\d{1,3}(?:,\\d{3})*(?:\\.\\d+)?[kM]?❤$")
 
     private val entities = mutableSetOf<Entity>()
 
@@ -67,17 +69,17 @@ object Highlight : Module(
             entities.removeIf { entity -> !entity.isAlive }
         }
 
-        on<RenderEvent./*? if >=1.21.10 {*/Extract/*?} else {*//*Last*//*?}*/> {
+        on<RenderEvent.Extract> {
             if (!highlightStar || !DungeonUtils.inDungeons || DungeonUtils.inBoss) return@on
 
             entities.forEach { entity ->
                 if (!entity.isAlive) return@forEach
 
-                /*? if <1.21.10 {*//*context.*//*?}*/drawStyledBox(entity.renderBoundingBox, color, renderStyle, depthCheck)
+                drawStyledBox(entity.renderBoundingBox, color, renderStyle, depthCheck)
             }
         }
 
-        on</*? >= 1.21.10 {*/WorldEvent.Load/*? } else { *//*WorldLoadEvent*//*? } */> {
+        on<WorldEvent.Load> {
             entities.clear()
         }
     }

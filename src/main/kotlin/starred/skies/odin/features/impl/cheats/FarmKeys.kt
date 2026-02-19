@@ -1,7 +1,8 @@
 package starred.skies.odin.features.impl.cheats
 
 import com.mojang.blaze3d.platform.InputConstants
-import com.odtheking.odin.clickgui.settings.impl.*
+import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
+import com.odtheking.odin.clickgui.settings.impl.KeybindSetting
 import com.odtheking.odin.features.Module
 import net.minecraft.client.KeyMapping
 import org.lwjgl.glfw.GLFW
@@ -41,8 +42,10 @@ object FarmKeys : Module(
     private fun bind(attackKeyCode: Int, jumpKeyCode: Int) {
         val options = mc.options ?: return
 
-        if (attackKey.value != GLFW.GLFW_KEY_UNKNOWN) options.keyAttack.setKey(InputConstants.Type.KEYSYM.getOrCreate(attackKeyCode))
-        if (jumpKey.value != GLFW.GLFW_KEY_UNKNOWN) options.keyJump.setKey(InputConstants.Type.KEYSYM.getOrCreate(jumpKeyCode))
+        val key0 = if (attackKeyCode > 0) InputConstants.Type.KEYSYM.getOrCreate(attackKeyCode) else InputConstants.Type.MOUSE.getOrCreate(attackKeyCode)
+        val key1 = if (jumpKeyCode > 0) InputConstants.Type.KEYSYM.getOrCreate(jumpKeyCode) else InputConstants.Type.MOUSE.getOrCreate(jumpKeyCode)
+        if (attackKey.value != GLFW.GLFW_KEY_UNKNOWN) options.keyAttack.setKey(key0)
+        if (jumpKey.value != GLFW.GLFW_KEY_UNKNOWN) options.keyJump.setKey(key1)
 
         options.save()
         KeyMapping.resetMapping()
