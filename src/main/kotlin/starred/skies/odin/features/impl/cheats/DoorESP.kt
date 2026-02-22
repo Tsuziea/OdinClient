@@ -6,6 +6,7 @@ import com.odtheking.odin.clickgui.settings.impl.ColorSetting
 import com.odtheking.odin.clickgui.settings.impl.SelectorSetting
 import com.odtheking.odin.events.RenderEvent
 import com.odtheking.odin.events.TickEvent
+import com.odtheking.odin.events.WorldEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.events.core.onReceive
 import com.odtheking.odin.features.Module
@@ -13,6 +14,7 @@ import com.odtheking.odin.features.impl.dungeon.DungeonMap
 import com.odtheking.odin.features.impl.dungeon.map.Door
 import com.odtheking.odin.features.impl.dungeon.map.DungMap
 import com.odtheking.odin.features.impl.dungeon.map.MapScanner
+import com.odtheking.odin.features.impl.dungeon.map.SpecialColumn
 import com.odtheking.odin.utils.Colors
 import com.odtheking.odin.utils.render.drawStyledBox
 import com.odtheking.odin.utils.skyblock.dungeon.ScanUtils
@@ -54,6 +56,13 @@ object DoorESP : Module(
 
                 drawStyledBox(aabb, color, renderStyle, false)
             }
+        }
+
+        on<WorldEvent.Load> {
+            if (DungeonMap.enabled) return@on
+            SpecialColumn.unload()
+            MapScanner.unload()
+            DungMap.unload()
         }
 
         on<TickEvent.End> {
