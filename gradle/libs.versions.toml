@@ -14,12 +14,10 @@ fabric-api-1-21-8 = "0.136.1+1.21.8"
 fabric-api-1-21-10 = "0.138.3+1.21.10"
 
 odin-act-1-21-10 = "e2cf40d9aa"
-odin-prod-1-21-10 = "2TTHEjGJ"
+odin-prod-1-21-10 = "b1wkliTK"
 
-firmament-1-21-8 = "42.0.0+mc1.21.7"
 firmament-1-21-10 = "42.0.0+mc1.21.10"
 
-parchment-1-21-8 = "2025.09.14"
 parchment-1-21-10 = "2025.10.12"
 
 # needed by odin to work properly in dev env as we use modrinth which doesn't provide the transitive dependencies
