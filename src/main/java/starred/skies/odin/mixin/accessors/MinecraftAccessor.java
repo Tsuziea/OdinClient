@@ -10,6 +10,9 @@ public interface MinecraftAccessor {
     @Invoker("startAttack")
     boolean odinextra$startAttack();
 
+    @Invoker("continueAttack")
+    void odinextra$continueAttack(boolean isHoldingAttack);
+
     @Invoker("startUseItem")
     void odinextra$startUseItem();
 }
