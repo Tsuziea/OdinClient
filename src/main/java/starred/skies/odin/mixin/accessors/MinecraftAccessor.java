@@ -8,11 +8,11 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @SuppressWarnings("unused")
 public interface MinecraftAccessor {
     @Invoker("startAttack")
-    boolean odinextra$startAttack();
+    boolean odinclient$startAttack();
 
     @Invoker("continueAttack")
-    void odinextra$continueAttack(boolean isHoldingAttack);
+    void odinclient$continueAttack(boolean isHoldingAttack);
 
     @Invoker("startUseItem")
-    void odinextra$startUseItem();
+    void odinclient$startUseItem();
 }
