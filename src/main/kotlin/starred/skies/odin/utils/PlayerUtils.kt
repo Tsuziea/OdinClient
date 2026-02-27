@@ -2,20 +2,12 @@ package starred.skies.odin.utils
 
 import com.odtheking.odin.OdinMod.mc
 import net.minecraft.client.KeyMapping
-import starred.skies.odin.mixin.accessors.KeyMappingAccessor
-
-fun rightClick() {
-    val options = mc.options ?: return
-    val key = (options.keyUse as KeyMappingAccessor).boundKey
-    KeyMapping.set(key, true)
-    KeyMapping.click(key)
-    KeyMapping.set(key, false)
-}
+import starred.skies.odin.mixin.accessors.MinecraftAccessor
 
 fun leftClick() {
-    val options = mc.options ?: return
-    val key = (options.keyAttack as KeyMappingAccessor).boundKey
-    KeyMapping.set(key, true)
-    KeyMapping.click(key)
-    KeyMapping.set(key, false)
+    (mc as MinecraftAccessor).`odinextra$startAttack`()
+}
+
+fun rightClick() {
+    (mc as MinecraftAccessor).`odinextra$startUseItem`()
 }
