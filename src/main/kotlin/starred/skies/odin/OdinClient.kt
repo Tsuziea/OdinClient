@@ -16,6 +16,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.HoverEvent
 import net.minecraft.network.chat.Style
 import starred.skies.odin.commands.autoSellCommand
+import starred.skies.odin.commands.highlightCommand
 import starred.skies.odin.commands.streamCommand
 import starred.skies.odin.features.UpdateNotifier
 import starred.skies.odin.features.impl.cheats.*
@@ -23,12 +24,14 @@ import starred.skies.odin.helpers.Scribble
 import java.net.URI
 
 object OdinClient : ClientModInitializer {
-    private val commandsToRegister: Array<Commodore> = arrayOf(autoSellCommand, streamCommand)
+    private val commandsToRegister: Array<Commodore> = arrayOf(
+        autoSellCommand, streamCommand, highlightCommand
+    )
 
     private val modulesToRegister: Array<Module> = arrayOf(
         CloseChest, DungeonAbilities, FuckDiorite, SecretHitboxes, BreakerHelper, KeyHighlight, LividSolver, SpiritBear, TriggerBot,
         Highlight, AutoClicker, Gloomlock, EscrowFix, AutoGFS, QueueTerms, AutoTerms, Trajectories, AutoSell, SimonSays, InventoryWalk,
-        FarmKeys, AutoExperiments, EtherwarpHelper
+        FarmKeys, AutoExperiments, EtherwarpHelper, DoorESP, CancelInteract, WorldScanner, AutoDojo, CheaterWardrobe
     )
 
     private val mainFile: Scribble = Scribble("main")
@@ -36,7 +39,7 @@ object OdinClient : ClientModInitializer {
     private var lastInstall: String by mainFile.string("lastInstall")
     private var send: Boolean = true
 
-    const val MOD_VERSION: String = /*$ mod_version*/ "0.1.5-r1"
+    const val MOD_VERSION: String = /*$ mod_version*/ "0.1.6-r1"
     val moduleConfig: ModuleConfig = ModuleConfig("odinClient")
     val joinListeners = mutableListOf<() -> Unit>()
 
@@ -47,6 +50,7 @@ object OdinClient : ClientModInitializer {
 
         ModuleManager.registerModules(moduleConfig, *modulesToRegister)
         EventBus.subscribe(UpdateNotifier)
+        EventBus.subscribe(AutoDojo)
 
         ClientPlayConnectionEvents.JOIN.register { _, _, _ ->
             for (fn in joinListeners.toList()) fn.invoke()
